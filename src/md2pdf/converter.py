@@ -19,7 +19,7 @@ def convert(md_path: str | Path, output_path: str | Path | None = None, css_path
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     md_text = md_path.read_text(encoding="utf-8")
-    html_body = MarkdownIt().render(md_text)
+    html_body = MarkdownIt("commonmark", {"breaks": True}).render(md_text)
 
     css_file = Path(css_path) if css_path else _DEFAULT_CSS
     if not css_file.exists():
